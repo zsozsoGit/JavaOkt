@@ -9,6 +9,9 @@ public class Arrays {
 		System.out.println(sorozatok.length);
 		System.out.println(sorozatok[0].length);
 		
+		int x [] = new int[100];
+		System.out.println(x[21]);
+		
 
 	}
 
