@@ -25,13 +25,24 @@ public class Numbers {
 		
 		float tort = 5.3F;
 		System.out.println(tort);
-		tort = 3/7;
+		tort = 5/7;
 		System.out.println(tort);
-		tort = 3/7F;
+		tort = 5/7F;
 		System.out.println(tort);
 		
-		double dTort = 3/7.0;
-		System.out.println(dTort);
+		double dTort = 5/7.0;
+		System.out.println(dTort+ "fura kerekítés");
+		System.out.println("6:"+(5+6)+":::5+6");
+		System.out.println("6:"+5+6+":::5+6");
+		boolean logikai = 5==6;
+		System.out.println(logikai);
+		logikai = true;
+		System.out.println(logikai);
+		char betu = 'd';
+		System.out.println(betu);
+		char charakter = '\n';
+		System.out.println(charakter);
+		System.out.println("Kovács" + charakter+ "\"Béla\"");
 	}
 
 }
