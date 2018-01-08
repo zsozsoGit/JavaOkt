@@ -15,13 +15,17 @@ public class CType {
 		String str1 = "HW";
 		System.out.println(str1);
 		
-		String str2 = "HW";
+		String str2 = "HW"; //Implicit konstruktor
 		System.out.println(str2);
 		System.out.println(str1==str2);
 		str1 = "22";
-		System.out.println(str2);
-		System.out.println(str1);
 		System.out.println(str1==str2);
+		System.out.println("-----------------------------");
+		String str32 = new String("HW"); 
+		System.out.println(str2==str32);
+		System.out.println(str2);
+		System.out.println(str32);
+		System.out.println(str2.equals(str32));
 	}
 
 }
