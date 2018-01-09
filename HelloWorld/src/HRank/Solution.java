@@ -85,46 +85,46 @@ abstract class TreeVis
 }
 class SumInLeavesVisitor extends TreeVis {
     public int getResult() {
-      	//implement this
+      	//TODO Implement
         return 0;
     }
 
     public void visitNode(TreeNode node) {
-      	//implement this
+      	//TODO Implement
     }
 
     public void visitLeaf(TreeLeaf leaf) {
-      	//implement this
+      	//TODO Implement
     }
 }
 
 class ProductOfRedNodesVisitor extends TreeVis {
     public int getResult() {
-      	//implement this
+      	//TODO Implement
         return 1;
     }
 
     public void visitNode(TreeNode node) {
-      	//implement this
+      	//TODO Implement
     }
 
     public void visitLeaf(TreeLeaf leaf) {
-      	//implement this
+      	//TODO Implement
     }
 }
 
 class FancyVisitor extends TreeVis {
     public int getResult() {
-      	//implement this
+      	//TODO Implement
         return 0;
     }
 
     public void visitNode(TreeNode node) {
-    	//implement this
+    	//TODO Implement
     }
 
     public void visitLeaf(TreeLeaf leaf) {
-    	//implement this
+    	//TODO Implement
     }
 
 }
@@ -136,7 +136,7 @@ public class Solution {
 			
 			@Override
 			public void accept(TreeVis visitor) {
-				// TODO Auto-generated method stub
+				// 
 				
 			}
 		};
