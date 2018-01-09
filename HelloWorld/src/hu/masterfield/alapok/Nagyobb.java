@@ -19,15 +19,18 @@ public class Nagyobb {
 		 * } else { //veletlen nem jo if (veletlen3 > veletlen2) {
 		 * System.out.println(veletlen3); } else { System.out.println(veletlen2); } }
 		 */
-		if (veletlen > veletlen2 && veletlen > veletlen3) {
-			System.out.println(veletlen);
-		} else {
-			if (veletlen3 > veletlen2) {
-				System.out.println(veletlen3);
-			} else {
-				System.out.println(veletlen2);
-			}
-		}
+//		if (veletlen > veletlen2 && veletlen > veletlen3) {
+//			System.out.println(veletlen);
+//		} else {
+//			if (veletlen3 > veletlen2) {
+//				System.out.println(veletlen3);
+//			} else {
+//				System.out.println(veletlen2);
+//			}
+//		}
+		int maximum = veletlen;
+		if (veletlen2>maximum) maximum = veletlen2;
+		
 	}
 
 }
