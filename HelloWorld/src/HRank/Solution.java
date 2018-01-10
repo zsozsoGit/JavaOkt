@@ -131,6 +131,10 @@ class FancyVisitor extends TreeVis {
 public class Solution {
 	  
     public static Tree solve() {
+    	Scanner sc = new Scanner(System.in);
+    	while(sc.hasNextLine()) {
+    		sc.nextLine();
+    	}
         //read the tree from STDIN and return its root as a return value of this function
     	Tree tr = new Tree() {
 			
@@ -145,6 +149,7 @@ public class Solution {
  
 
     public static void main(String[] args) {
+
       	Tree root = solve();
 		SumInLeavesVisitor vis1 = new SumInLeavesVisitor();
       	ProductOfRedNodesVisitor vis2 = new ProductOfRedNodesVisitor();
