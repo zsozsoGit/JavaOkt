@@ -1,4 +1,4 @@
-package HRank;
+package java_visitor;
 
 import java.util.ArrayList;
 import java.util.*;
