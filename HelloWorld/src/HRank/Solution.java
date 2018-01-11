@@ -3,165 +3,202 @@ package HRank;
 import java.util.ArrayList;
 import java.util.*;
 import java.text.*;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.math.*;
 import java.util.regex.*;
+
+import com.sun.prism.j2d.paint.MultipleGradientPaint.ColorSpaceType;
 
 import java.util.ArrayList;
 import java.util.Scanner;
 
 enum Color {
-    RED, GREEN
+	RED, GREEN
 }
 
 abstract class Tree {
 
-    private int value;
-    private Color color;
-    private int depth;
+	private int value;
+	private Color color;
+	private int depth;
 
-    public Tree(int value, Color color, int depth) {
-        this.value = value;
-        this.color = color;
-        this.depth = depth;
-    }
+	public Tree(int value, Color color, int depth) {
+		this.value = value;
+		this.color = color;
+		this.depth = depth;
+	}
 
-    public Tree() {
+	public Tree() {
 		// TODO Auto-generated constructor stub
 	}
 
 	public int getValue() {
-        return value;
-    }
+		return value;
+	}
 
-    public Color getColor() {
-        return color;
-    }
+	public Color getColor() {
+		return color;
+	}
 
-    public int getDepth() {
-        return depth;
-    }
+	public int getDepth() {
+		return depth;
+	}
 
-    public abstract void accept(TreeVis visitor);
+	public abstract void accept(TreeVis visitor);
 }
 
 class TreeNode extends Tree {
 
-    private ArrayList<Tree> children = new ArrayList<>();
+	private ArrayList<Tree> children = new ArrayList<>();
 
-    public TreeNode(int value, Color color, int depth) {
-        super(value, color, depth);
-    }
+	public TreeNode(int value, Color color, int depth) {
+		super(value, color, depth);
+	}
 
-    public void accept(TreeVis visitor) {
-        visitor.visitNode(this);
+	public void accept(TreeVis visitor) {
+		visitor.visitNode(this);
 
-        for (Tree child : children) {
-            child.accept(visitor);
-        }
-    }
+		for (Tree child : children) {
+			child.accept(visitor);
+		}
+	}
 
-    public void addChild(Tree child) {
-        children.add(child);
-    }
+	public void addChild(Tree child) {
+		children.add(child);
+	}
 }
 
 class TreeLeaf extends Tree {
 
-    public TreeLeaf(int value, Color color, int depth) {
-        super(value, color, depth);
-    }
+	public TreeLeaf(int value, Color color, int depth) {
+		super(value, color, depth);
+	}
 
-    public void accept(TreeVis visitor) {
-        visitor.visitLeaf(this);
-    }
+	public void accept(TreeVis visitor) {
+		visitor.visitLeaf(this);
+	}
 }
 
-abstract class TreeVis
-{
-    public abstract int getResult();
-    public abstract void visitNode(TreeNode node);
-    public abstract void visitLeaf(TreeLeaf leaf);
+abstract class TreeVis {
+	public abstract int getResult();
+
+	public abstract void visitNode(TreeNode node);
+
+	public abstract void visitLeaf(TreeLeaf leaf);
 
 }
+
 class SumInLeavesVisitor extends TreeVis {
-    public int getResult() {
-      	//TODO Implement
-        return 0;
-    }
+	public int getResult() {
+		// TODO Implement
+		return 0;
+	}
 
-    public void visitNode(TreeNode node) {
-      	//TODO Implement
-    }
+	public void visitNode(TreeNode node) {
+		// TODO Implement
+	}
 
-    public void visitLeaf(TreeLeaf leaf) {
-      	//TODO Implement
-    }
+	public void visitLeaf(TreeLeaf leaf) {
+		// TODO Implement
+	}
 }
 
 class ProductOfRedNodesVisitor extends TreeVis {
-    public int getResult() {
-      	//TODO Implement
-        return 1;
-    }
+	public int getResult() {
+		// TODO Implement
+		return 1;
+	}
 
-    public void visitNode(TreeNode node) {
-      	//TODO Implement
-    }
+	public void visitNode(TreeNode node) {
+		// TODO Implement
+	}
 
-    public void visitLeaf(TreeLeaf leaf) {
-      	//TODO Implement
-    }
+	public void visitLeaf(TreeLeaf leaf) {
+		// TODO Implement
+	}
 }
 
 class FancyVisitor extends TreeVis {
-    public int getResult() {
-      	//TODO Implement
-        return 0;
-    }
+	public int getResult() {
+		// TODO Implement
+		return 0;
+	}
 
-    public void visitNode(TreeNode node) {
-    	//TODO Implement
-    }
+	public void visitNode(TreeNode node) {
+		// TODO Implement
+	}
 
-    public void visitLeaf(TreeLeaf leaf) {
-    	//TODO Implement
-    }
+	public void visitLeaf(TreeLeaf leaf) {
+		// TODO Implement
+	}
 
 }
+
 public class Solution {
-	  
+
 	public static Tree solve() {
 
 		// TODO read the tree from STDIN and return its root as a return value of this
 		// function
-		Scanner sc = new Scanner(System.in);
-		int num = sc.nextInt();
-		if (num > 0) {
+		Tree tr = null;
+		FileReader f;
+		try {
+			f = new FileReader("inp.txt");
+			System.out.println("Start reading");
+			Scanner sc = new Scanner(f);
+			int num = sc.nextInt();
+			if (num > 0) {
 
+				int[] weights = new int[num];
+				// read weights
+				for (int i = 0; i < num; i++) {
+					weights[i] = sc.nextInt();
+				}
+				sc.nextLine();
+				int[] colors = new int[num];
+				for (int i = 0; i < num; i++) {
+					colors[i] = sc.nextInt();
+				}
+
+				int[] fathers = new int[num];
+				for (int i = 0; i < num - 1; i++) {
+					sc.nextLine();
+					int tmp = sc.nextInt();
+					fathers[sc.nextInt() - 1] = tmp - 1;
+
+				}
+				tr = new TreeNode(weights[0], Color.values()[colors[0]], 0);
+				// ((TreeNode) tr).addChild();
+				System.out.println("Done reading");
+			}
+
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 
-		Tree tr = new TreeNode(0, Color.RED, 0);
+		// tr.ac;
 		return tr;
-	} 
- 
+	}
 
-    public static void main(String[] args) {
+	public static void main(String[] args) {
 
-      	Tree root = solve();
+		Tree root = solve();
 		SumInLeavesVisitor vis1 = new SumInLeavesVisitor();
-      	ProductOfRedNodesVisitor vis2 = new ProductOfRedNodesVisitor();
-      	FancyVisitor vis3 = new FancyVisitor();
+		ProductOfRedNodesVisitor vis2 = new ProductOfRedNodesVisitor();
+		FancyVisitor vis3 = new FancyVisitor();
 
-      	root.accept(vis1);
-      	root.accept(vis2);
-      	root.accept(vis3);
+		root.accept(vis1);
+		root.accept(vis2);
+		root.accept(vis3);
 
-      	int res1 = vis1.getResult();
-      	int res2 = vis2.getResult();
-      	int res3 = vis3.getResult();
+		int res1 = vis1.getResult();
+		int res2 = vis2.getResult();
+		int res3 = vis3.getResult();
 
-      	System.out.println(res1);
-     	System.out.println(res2);
-    	System.out.println(res3);
+		System.out.println(res1);
+		System.out.println(res2);
+		System.out.println(res3);
 	}
 }
