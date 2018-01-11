@@ -130,22 +130,19 @@ class FancyVisitor extends TreeVis {
 }
 public class Solution {
 	  
-    public static Tree solve() {
-    	Scanner sc = new Scanner(System.in);
-    	while(sc.hasNextLine()) {
-    		sc.nextLine();
-    	}
-        //read the tree from STDIN and return its root as a return value of this function
-    	Tree tr = new Tree() {
-			
-			@Override
-			public void accept(TreeVis visitor) {
-				// 
-				
-			}
-		};
+	public static Tree solve() {
+
+		// TODO read the tree from STDIN and return its root as a return value of this
+		// function
+		Scanner sc = new Scanner(System.in);
+		int num = sc.nextInt();
+		if (num > 0) {
+
+		}
+
+		Tree tr = new TreeNode(0, Color.RED, 0);
 		return tr;
-    }  
+	} 
  
 
     public static void main(String[] args) {
