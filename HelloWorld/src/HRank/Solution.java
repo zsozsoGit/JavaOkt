@@ -90,47 +90,63 @@ abstract class TreeVis {
 }
 
 class SumInLeavesVisitor extends TreeVis {
+	private int result;
+
 	public int getResult() {
-		// TODO Implement
-		return 0;
+
+		return result;
 	}
 
 	public void visitNode(TreeNode node) {
-		// TODO Implement
+		// No Implement
 	}
 
 	public void visitLeaf(TreeLeaf leaf) {
-		// TODO Implement
+		result += leaf.getValue();
 	}
 }
 
 class ProductOfRedNodesVisitor extends TreeVis {
+	private int result = 1;
+
+	private void visitSth(Tree t) {
+		if (t.getColor() == Color.RED)
+			result *= t.getValue();
+	}
+
 	public int getResult() {
-		// TODO Implement
-		return 1;
+		return result;
 	}
 
 	public void visitNode(TreeNode node) {
-		// TODO Implement
+		visitSth((Tree) node);
 	}
 
 	public void visitLeaf(TreeLeaf leaf) {
-		// TODO Implement
+		visitSth(leaf);
 	}
 }
 
 class FancyVisitor extends TreeVis {
+	// returns the absolute difference between
+	// the sum of the values of non-leaf nodes at even depth and
+	// the sum of the values of green leaf nodes
+	private int sumValuesNodesEvenDepth;
+	private int sumValuesGreenLeafs;
+
 	public int getResult() {
-		// TODO Implement
-		return 0;
+
+		return Math.abs(sumValuesNodesEvenDepth - sumValuesGreenLeafs);
 	}
 
 	public void visitNode(TreeNode node) {
-		// TODO Implement
+		if ((node.getDepth() % 2) == 0)
+			sumValuesNodesEvenDepth += node.getValue();
 	}
 
 	public void visitLeaf(TreeLeaf leaf) {
-		// TODO Implement
+		if((leaf.getColor()==Color.GREEN))
+			sumValuesGreenLeafs +=leaf.getValue();
 	}
 
 }
@@ -138,9 +154,6 @@ class FancyVisitor extends TreeVis {
 public class Solution {
 
 	public static Tree solve() {
-
-		// TODO read the tree from STDIN and return its root as a return value of this
-		// function
 		Tree tr = null;
 		FileReader f;
 		try {
@@ -160,16 +173,32 @@ public class Solution {
 				for (int i = 0; i < num; i++) {
 					colors[i] = sc.nextInt();
 				}
-
+				int[] depth = new int[num];
 				int[] fathers = new int[num];
+				boolean[] notleafs = new boolean[num];
 				for (int i = 0; i < num - 1; i++) {
 					sc.nextLine();
-					int tmp = sc.nextInt();
-					fathers[sc.nextInt() - 1] = tmp - 1;
+					int first = sc.nextInt();
+					int second = sc.nextInt();
+					notleafs[first - 1] = true;
+					depth[second - 1] = depth[first - 1] + 1;
+					fathers[second - 1] = first - 1;
 
 				}
 				tr = new TreeNode(weights[0], Color.values()[colors[0]], 0);
-				// ((TreeNode) tr).addChild();
+				ArrayList<Tree> elems = new ArrayList<Tree>();
+				elems.add(tr);
+				for (int i = 1; i < notleafs.length; i++) {
+					boolean b = notleafs[i];
+					if (b) {
+						elems.add(new TreeNode(weights[i], Color.values()[colors[i]], depth[i]));
+					} else {
+						elems.add(new TreeLeaf(weights[i], Color.values()[colors[i]], depth[i]));
+					}
+				}
+				for (int i = 1; i < num; i++) {
+					((TreeNode) elems.get(fathers[i])).addChild(elems.get(i));
+				}
 				System.out.println("Done reading");
 			}
 
